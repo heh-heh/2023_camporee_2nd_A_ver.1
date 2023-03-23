@@ -60,7 +60,7 @@ void sort(void)
 {
     int ck=0;
     for(int i=0; i<3&&ck==0; i++){
-        for(int j=4; j>=0&&ck==0; j-- ){
+        for(int j=3; j>=0&&ck==0; j-- ){
             if(map[j][i]>0){
                 if(map[j+1][i]==0){
                     path[pt][0]=j; path[pt][1]=i; path[pt][2]=1;pt++;
@@ -69,13 +69,14 @@ void sort(void)
                 else{
                     int cnn=0;
                     for(int ii=j+1; ii<5; ii++){
-                        if(map[ii][j]){cnn++;}else if(map[ii][j]==0)break;
+                        if(map[ii][i]!=0){cnn++;}else if(map[ii][i]==0)break;
                     }
+                    printf("\n%d %d : %d",j,i,cnn);
                     while(cnn){
                         int fp=0;
                         for(int ii=0; ii<3; ii++){
                             if(map[4][ii]==0&&ii!=i){
-                                fp=ii;
+                                fp=ii;break;
                             }
                         }
                         for(int ii=0; ii<5; ii++){
@@ -91,6 +92,7 @@ void sort(void)
             }
         }
     }
+
     for(int i=0; i<3; i++) for(int j=0; j<5; j++) if(map[j][i]>0)sort();//혹시 필요 퍽 이외의 것이 있을 경우 재귀 함수 작동
 }
 void sort2(int fp){  
